@@ -1,5 +1,5 @@
 # 🧩 ScrollFX.css  
-**Lightweight, class-based scroll-animation micro-framework using native CSS View Timelines**
+**Lightweight, basic class-based scroll-animation micro-framework using native CSS View Timelines**
 
 ScrollFX.css lets you build scroll-linked animations (fade, slide, fly-in, scale, rotate, blur, parallax, stagger, pin, spin, …) **without JavaScript**.  
 It uses modern CSS features such as `view-timeline` and `animation-timeline`, so all effects play smoothly forward when you scroll down and reverse automatically when you scroll back up.
