@@ -162,7 +162,7 @@ project/
 
 ## 📜 License
 
-MIT © [Your Name]
+MIT © ulrischa
 Created with ❤️ using native CSS scroll animations.
 
 ---
