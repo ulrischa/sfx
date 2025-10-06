@@ -1,0 +1,39 @@
+
+    :root{
+      --sfx-distance:24px;--sfx-rotate:8deg;--sfx-scale:.9;--sfx-blur:8px;--sfx-start:0%;--sfx-end:100%;--sfx-ease:linear;--sfx-parallax:20vh
+    }
+    @media (prefers-reduced-motion: reduce){[class*="sfx-"]{animation:none!important;transform:none!important;filter:none!important;opacity:1!important}}
+    .sfx{view-timeline-name:--sfx-tl;view-timeline-axis:block;animation-timeline:--sfx-tl;animation-timing-function:var(--sfx-ease);animation-fill-mode:both;animation-duration:var(--sfx-duration,1s);animation-range:var(--sfx-start) var(--sfx-end);will-change:transform,opacity,filter}
+    .sfx-timeline{view-timeline-name:--sfx-container;view-timeline-axis:block}
+    .sfx-timeline>.sfx-child{animation-timeline:--sfx-container;animation-range:var(--sfx-start,0%) var(--sfx-end,100%);animation-delay:calc(var(--sfx-idx,0)*var(--sfx-step,120ms))}
+    @keyframes sfx-fade-kf{from{opacity:0}to{opacity:1}}
+    @keyframes sfx-up-kf{from{transform:translateY(var(--sfx-distance));opacity:0}to{transform:translateY(0);opacity:1}}
+    @keyframes sfx-down-kf{from{transform:translateY(calc(var(--sfx-distance)*-1));opacity:0}to{transform:translateY(0);opacity:1}}
+    @keyframes sfx-left-kf{from{transform:translateX(var(--sfx-distance));opacity:0}to{transform:translateX(0);opacity:1}}
+    @keyframes sfx-right-kf{from{transform:translateX(calc(var(--sfx-distance)*-1));opacity:0}to{transform:translateX(0);opacity:1}}
+    @keyframes sfx-fly-left-kf{from{transform:translateX(15vw) scale(.96);opacity:0}to{transform:translateX(0) scale(1);opacity:1}}
+    @keyframes sfx-fly-right-kf{from{transform:translateX(-15vw) scale(.96);opacity:0}to{transform:translateX(0) scale(1);opacity:1}}
+    @keyframes sfx-scale-kf{from{transform:scale(var(--sfx-scale));opacity:.01}to{transform:scale(1);opacity:1}}
+    @keyframes sfx-rotate-kf{from{transform:rotate(var(--sfx-rotate));opacity:0}to{transform:rotate(0);opacity:1}}
+    @keyframes sfx-blur-kf{from{filter:blur(var(--sfx-blur));opacity:0}to{filter:blur(0);opacity:1}}
+    @keyframes sfx-parallax-kf{from{transform:translateY(calc(var(--sfx-parallax)*-0.5))}to{transform:translateY(calc(var(--sfx-parallax)*0.5))}}
+    @keyframes sfx-spin-kf{from{transform:rotate(0turn)}to{transform:rotate(1turn)}}
+    .sfx-fade{animation-name:sfx-fade-kf}
+    .sfx-up{animation-name:sfx-up-kf}
+    .sfx-down{animation-name:sfx-down-kf}
+    .sfx-left{animation-name:sfx-left-kf}
+    .sfx-right{animation-name:sfx-right-kf}
+    .sfx-scale{animation-name:sfx-scale-kf;transform-origin:center}
+    .sfx-rotate{animation-name:sfx-rotate-kf;transform-origin:center}
+    .sfx-blur{animation-name:sfx-blur-kf}
+    .sfx-parallax{animation-name:sfx-parallax-kf;will-change:transform}
+    .sfx-spin{animation-name:sfx-spin-kf;transform-origin:center}
+    .sfx-fly-left{animation-name:sfx-fly-left-kf;--sfx-ease:cubic-bezier(.2,.7,0,1)}
+    .sfx-fly-right{animation-name:sfx-fly-right-kf;--sfx-ease:cubic-bezier(.2,.7,0,1)}
+    .sfx-stagger-tight>.sfx-child{animation-range:0% 60%}
+    .sfx-stagger-normal>.sfx-child{animation-range:10% 90%}
+    .sfx-stagger-loose>.sfx-child{animation-range:25% 100%}
+    .sfx-timeline>.sfx-child:nth-child(1){--sfx-idx:1}.sfx-timeline>.sfx-child:nth-child(2){--sfx-idx:2}.sfx-timeline>.sfx-child:nth-child(3){--sfx-idx:3}.sfx-timeline>.sfx-child:nth-child(4){--sfx-idx:4}.sfx-timeline>.sfx-child:nth-child(5){--sfx-idx:5}.sfx-timeline>.sfx-child:nth-child(6){--sfx-idx:6}.sfx-timeline>.sfx-child:nth-child(7){--sfx-idx:7}.sfx-timeline>.sfx-child:nth-child(8){--sfx-idx:8}.sfx-timeline>.sfx-child:nth-child(9){--sfx-idx:9}.sfx-timeline>.sfx-child:nth-child(10){--sfx-idx:10}.sfx-timeline>.sfx-child:nth-child(11){--sfx-idx:11}.sfx-timeline>.sfx-child:nth-child(12){--sfx-idx:12}
+    .sfx-pin{position:sticky;top:var(--sfx-pin-top,0);z-index:var(--sfx-pin-z,1)}
+    @supports not (animation-timeline:auto){.sfx{opacity:1;transform:none;filter:none;animation:none}}
+    .sfx-debug [class*="sfx-"]{outline:1px dashed color-mix(in oklab, CanvasText 30%, transparent)}
