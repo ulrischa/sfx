@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ScrollFX.css — Options Demo (start/end, easing, strength)</title>
+
+  <!-- ================= ScrollFX.css (FRAMEWORK) ================= -->
+  
+<link rel="stylesheet" href="sfx.css> 
+  <!-- ================= Demo page styles (SEPARATE) ================= -->
+  <style>
+    :root{--bg:oklch(98% .02 250);--ink:oklch(20% .03 250);--brand:oklch(65% .2 260);--muted:oklch(94% .02 250);--card:white;--shadow:0 10px 28px color-mix(in oklab, black 12%, transparent)}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font:16px/1.5 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica Neue,Arial;color:var(--ink);background:var(--bg)}
+    header.hero{min-height:90svh;display:grid;place-items:center;text-align:center;padding:7rem 1rem;position:relative;overflow:clip;background:radial-gradient(80% 80% at 50% 20%,var(--muted),transparent 60%)}
+    .hero h1{font-size:clamp(2.2rem,5vw,4rem);margin:0 0 .3rem}
+    .hero p{margin:0;opacity:.8}
+    .badge{display:inline-block;padding:.45rem .75rem;border-radius:999px;background:var(--card);box-shadow:var(--shadow)}
+    main{display:grid;gap:6rem;padding-block:6rem}
+    .section{max-width:1200px;margin-inline:auto;padding-inline:1rem}
+    .grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .card{background:var(--card);border-radius:16px;padding:1rem 1.2rem;box-shadow:var(--shadow);display:grid;gap:.35rem;min-height:120px}
+    .card h3{margin:0;font-size:1.05rem}
+    .parallax-hero{height:70svh;display:grid;place-items:center;background:linear-gradient(180deg,var(--muted),transparent)}
+    .pin-wrap{height:200vh;position:relative}
+    .pin-box{background:var(--card);padding:1rem 1.2rem;border-radius:14px;box-shadow:var(--shadow)}
+    footer{text-align:center;padding:6rem 1rem;opacity:.8}
+    .controls{position:fixed;right:.75rem;bottom:.75rem;display:grid;gap:.5rem}
+    .controls button{padding:.6rem .8rem;border-radius:10px;border:1px solid color-mix(in oklab,var(--ink),white 60%);background:var(--card);box-shadow:var(--shadow);cursor:pointer}
+    code.kbd{background:var(--muted);padding:.1rem .4rem;border-radius:.35rem}
+    .pill{font:600 .75rem/1 ui-sans-serif;background:color-mix(in oklab,var(--brand),white 70%);padding:.25rem .5rem;border-radius:999px;justify-self:start}
+    .meta{opacity:.7;font-size:.9rem}
+  </style>
+</head>
+<body>
+  <header class="hero sfx sfx-parallax" style="--sfx-parallax: 24vh; --sfx-start: 0%; --sfx-end: 100%">
+    <div class="badge sfx sfx-fly-right" style="--sfx-start: 0%; --sfx-end: 30%">🧩 ScrollFX.css</div>
+    <h1 class="sfx sfx-fly-left" style="--sfx-start: 0%; --sfx-end: 40%">Options Demo — start/end, easing & strength</h1>
+    <p class="sfx sfx-fade" style="--sfx-start: 10%; --sfx-end: 60%">Scroll to compare different <code class="kbd">--sfx-start</code>/<code class="kbd">--sfx-end</code>, easing and distances. All effects reverse on up‑scroll.</p>
+  </header>
+
+  <main>
+    <!-- Section: Start/End windows -->
+    <section class="section">
+      <h2 class="sfx sfx-up">Adjusting <code class="kbd">--sfx-start</code> & <code class="kbd">--sfx-end</code></h2>
+      <div class="grid">
+        <div class="card sfx sfx-up" style="--sfx-start:0%; --sfx-end:100%">
+          <span class="pill">0% → 100%</span>
+          <h3>Default window</h3>
+          <p class="meta">Begins as soon as it enters; completes when fully in view.</p>
+        </div>
+        <div class="card sfx sfx-up" style="--sfx-start:20%; --sfx-end:80%">
+          <span class="pill">20% → 80%</span>
+          <h3>Starts later, ends earlier</h3>
+          <p class="meta">Shorter range → snappier feel.</p>
+        </div>
+        <div class="card sfx sfx-up" style="--sfx-start:40%; --sfx-end:60%">
+          <span class="pill">40% → 60%</span>
+          <h3>Quick snap</h3>
+          <p class="meta">Very short window for punchy reveals.</p>
+        </div>
+        <div class="card sfx sfx-up" style="--sfx-start:0%; --sfx-end:130%">
+          <span class="pill">0% → 130%</span>
+          <h3>Long, slow reveal</h3>
+          <p class="meta">Extend beyond 100% for extra‑long progress.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Easing comparisons -->
+    <section class="section">
+      <h2 class="sfx sfx-up">Easing (via <code class="kbd">--sfx-ease</code>)</h2>
+      <div class="grid">
+        <div class="card sfx sfx-left" style="--sfx-start:10%; --sfx-end:90%; --sfx-ease: linear">
+          <span class="pill">linear</span>
+          <h3>Linear</h3>
+          <p class="meta">Constant rate from start to end.</p>
+        </div>
+        <div class="card sfx sfx-left" style="--sfx-start:10%; --sfx-end:90%; --sfx-ease: ease-out">
+          <span class="pill">ease-out</span>
+          <h3>Ease‑out</h3>
+          <p class="meta">Fast at first, gentle at the end.</p>
+        </div>
+        <div class="card sfx sfx-left" style="--sfx-start:10%; --sfx-end:90%; --sfx-ease: cubic-bezier(.3,0,.7,1)">
+          <span class="pill">cb(.3,0,.7,1)</span>
+          <h3>Custom cubic‑bezier</h3>
+          <p class="meta">Sharp in & out for a snappy feel.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Strength (distance/scale/rotate/blur) -->
+    <section class="section">
+      <h2 class="sfx sfx-up">Effect strength</h2>
+      <div class="grid">
+        <div class="card sfx sfx-right" style="--sfx-distance:16px; --sfx-start: 10%; --sfx-end: 80%">
+          <span class="pill">distance: 16px</span>
+          <h3>Subtle slide</h3>
+        </div>
+        <div class="card sfx sfx-right" style="--sfx-distance:64px; --sfx-start: 10%; --sfx-end: 80%">
+          <span class="pill">distance: 64px</span>
+          <h3>Longer travel</h3>
+        </div>
+        <div class="card sfx sfx-scale" style="--sfx-scale:.85; --sfx-start: 10%; --sfx-end: 80%">
+          <span class="pill">scale: .85 → 1</span>
+          <h3>Scale‑up</h3>
+        </div>
+        <div class="card sfx sfx-rotate" style="--sfx-rotate:12deg; --sfx-start: 10%; --sfx-end: 80%">
+          <span class="pill">rotate: 12° → 0°</span>
+          <h3>Rotate‑to‑rest</h3>
+        </div>
+        <div class="card sfx sfx-blur" style="--sfx-blur:12px; --sfx-start: 10%; --sfx-end: 80%">
+          <span class="pill">blur: 12px → 0</span>
+          <h3>Deblur</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Fly-in + basic directions -->
+    <section class="section">
+      <h2 class="sfx sfx-up">Direction & Fly‑in</h2>
+      <div class="grid">
+        <div class="card sfx sfx-left" ><h3>.sfx-left</h3><p class="meta">Slide from right</p></div>
+        <div class="card sfx sfx-right"><h3>.sfx-right</h3><p class="meta">Slide from left</p></div>
+        <div class="card sfx sfx-fly-left"  style="--sfx-start:0%; --sfx-end:60%"><h3>.sfx-fly-left</h3><p class="meta">Big travel from right edge</p></div>
+        <div class="card sfx sfx-fly-right" style="--sfx-start:0%; --sfx-end:60%"><h3>.sfx-fly-right</h3><p class="meta">Big travel from left edge</p></div>
+      </div>
+    </section>
+
+    <!-- Parallax banner -->
+    <section class="section parallax-hero sfx sfx-parallax" style="--sfx-parallax: 36vh; --sfx-start: 0%; --sfx-end: 100%">
+      <h2 class="sfx sfx-fade" style="--sfx-start:10%; --sfx-end:70%">Parallax section</h2>
+    </section>
+
+    <!-- Staggered grid using container timeline -->
+    <section class="section">
+      <h2 class="sfx sfx-up">Stagger via container timeline</h2>
+      <p class="sfx sfx-fade" style="--sfx-start: 10%; --sfx-end: 60%">Wrap items in <code class="kbd">.sfx-timeline</code> and mark each one as <code class="kbd">.sfx-child</code>.</p>
+      <div class="grid sfx-timeline sfx-stagger-normal" style="--sfx-step: 120ms; --sfx-duration: 1s">
+        <div class="card sfx-child sfx sfx-up"><h3>Item 1</h3><p class="meta">Container‑linked</p></div>
+        <div class="card sfx-child sfx sfx-up"><h3>Item 2</h3><p class="meta">Offset by index</p></div>
+        <div class="card sfx-child sfx sfx-up"><h3>Item 3</h3><p class="meta">Reverses on up‑scroll</p></div>
+        <div class="card sfx-child sfx sfx-up"><h3>Item 4</h3></div>
+        <div class="card sfx-child sfx sfx-up"><h3>Item 5</h3></div>
+        <div class="card sfx-child sfx sfx-up"><h3>Item 6</h3></div>
+      </div>
+    </section>
+
+    <!-- Pinned heading with content underneath -->
+    <section class="section pin-wrap">
+      <h2 class="sfx-pin pin-box" style="--sfx-pin-top: 1rem">Pinned while you scroll</h2>
+      <div style="height: 140vh"></div>
+      <p class="sfx sfx-fade" style="--sfx-start: 10%; --sfx-end: 80%">Native sticky (no scroll‑jacking).</p>
+    </section>
+
+    <!-- Progress spin -->
+    <section class="section">
+      <h2 class="sfx sfx-up">Progress‑driven spin</h2>
+      <div class="card" style="display:grid;place-items:center;min-height:180px">
+        <div class="sfx sfx-spin" style="--sfx-start: 0%; --sfx-end: 100%; font-size: 48px">🔄</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sfx sfx-fade" style="--sfx-start: 10%; --sfx-end: 100%">
+    <p>All features demonstrated with separate CSS blocks (<strong>scrollfx.css</strong> & <strong>demo.css</strong>). Reverse‑on‑scroll is automatic thanks to CSS view timelines.
+      <br/>Use the debug toggle if you want outlines.</p>
+  </footer>
+
+  <!-- Optional tiny JS for demo-only debug toggle -->
+  <script>
+    document.addEventListener('DOMContentLoaded',()=>{
+      const btn=document.querySelector('#toggle-debug');
+      btn&&btn.addEventListener('click',()=>document.body.classList.toggle('sfx-debug'));
+    });
+  </script>
+  <div class="controls"><button id="toggle-debug">Toggle debug</button></div>
+</body>
+</html>
